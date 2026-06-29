@@ -585,11 +585,11 @@
       </div>
       <div>
         <div class="contact-form">
-          <input class="form-input" type="text" placeholder="Tamaru naam *" />
-          <input class="form-input" type="tel" placeholder="Mobile number *" />
-          <input class="form-input" type="text" placeholder="Saree type / Design (optional)" />
-          <textarea class="form-textarea" placeholder="Tamari jobwork requirement likho..."></textarea>
-          <button class="btn-send">Enquiry Moklo →</button>
+          <input id="enq-name" class="form-input" type="text" placeholder="Tamaru naam *" />
+          <input id="enq-mobile" class="form-input" type="tel" placeholder="Mobile number *" />
+          <input id="enq-type" class="form-input" type="text" placeholder="Saree type / Design (optional)" />
+          <textarea id="enq-msg" class="form-textarea" placeholder="Tamari jobwork requirement likho..."></textarea>
+          <button class="btn-send" onclick="sendWhatsApp()">Enquiry Moklo →</button>
         </div>
       </div>
     </div>
@@ -604,6 +604,28 @@
 
 <!-- WHATSAPP FLOAT -->
 <a class="wa-float" href="https://wa.me/919824827497" target="_blank" title="WhatsApp us">💬</a>
+
+<script>
+function sendWhatsApp() {
+  var name   = document.getElementById('enq-name').value.trim();
+  var mobile = document.getElementById('enq-mobile').value.trim();
+  var type   = document.getElementById('enq-type').value.trim();
+  var msg    = document.getElementById('enq-msg').value.trim();
+
+  if (!name || !mobile) {
+    alert('Naam ane Mobile number bharvo jaruri che.');
+    return;
+  }
+
+  var text = 'Namaste! Maro enquiry che:\n\n'
+    + 'Naam: ' + name + '\n'
+    + 'Mobile: ' + mobile + '\n'
+    + (type ? 'Saree Type: ' + type + '\n' : '')
+    + (msg  ? 'Message: ' + msg : '');
+
+  window.open('https://wa.me/919824827497?text=' + encodeURIComponent(text), '_blank');
+}
+</script>
 
 </body>
 </html>
